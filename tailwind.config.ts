@@ -7,14 +7,34 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+        
+            "primary": "#FFE66D",
+                    
+            "secondary": "#6CA6C1",
+                    
+            "accent": "#2F3061",
+                    
+            "neutral": "#343434",
+                    
+            "base-100": "#F7FFF7",
+                    
+            "info": "#83b8f1",
+                    
+            "success": "#279b53",
+                    
+            "warning": "#f8ab54",
+                    
+            "error": "#f0707d",
+        },
+      },
+    ],
+  }, 
+  
+  plugins: [require("daisyui")],
 }
 export default config
