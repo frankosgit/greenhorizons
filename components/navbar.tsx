@@ -1,27 +1,28 @@
 import React from 'react'
 import Link from 'next/link'
-import Container from './container'
+
 
 const Navbar = () => {
   return (
-    <Container>
+
         <div className="navbar bg-base-100 font-mono">
         <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
               </label>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <Link href = "/aboutus"><li>About us</li></Link>
-                <Link href = "/partners"><li>Partners</li></Link>
-                <Link href = "/shop"><li>Our products</li></Link>
+                <Link href = "/aboutus" className='mb-2'><li>About us</li></Link>
+                <Link href = "/partners" className='mb-2'><li>Partners</li></Link>
+                <Link href = "/shop" className='mb-2'><li>Our products</li></Link>
               </ul>
             </div>
           <div className="flex-1">
             <Link href ="/" className="btn btn-ghost normal-case text-xl bg-accent"><img className="h-10" src="/GrönHLogo.png" alt="" /></Link>
           </div>
           <Link href ="/shop" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Store</Link>
-        
-            <Link href ="/contactus" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Contact</Link>
+          <Link href ="/getquote" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Get a quote</Link>
+
+            <Link href ="/contact" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Contact</Link>
         
           <div className="flex-none">
             <div className="dropdown dropdown-end">
@@ -73,7 +74,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-    </Container>
   )
 }
 

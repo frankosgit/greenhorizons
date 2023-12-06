@@ -1,9 +1,8 @@
 import React from 'react'
-import Container from './container'
 
 const Footer = () => {
   return (
-    <Container>
+
             <div>
             <footer className="footer footer-center p-10 bg-primary text-base-content rounded">
                 <nav className="grid grid-flow-col gap-4">
@@ -24,7 +23,6 @@ const Footer = () => {
                 </aside>
                 </footer>
         </div>
-    </Container>
   )
 }
 
