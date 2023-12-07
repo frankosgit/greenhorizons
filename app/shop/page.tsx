@@ -68,7 +68,7 @@ const Shop = () => {
                               </div>
                               </a>
                           </div> */}
-                      <h2 id="productHeader" className="text-6xl font-bold font-mono mt-20 mb-20">Our Products</h2>
+                      <h2 id="productHeader" className="text-6xl font-bold font-mono mt-20 mb-20">Products</h2>
 
 
                       <StoreCardComponent/>  
