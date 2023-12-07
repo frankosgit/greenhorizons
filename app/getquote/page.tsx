@@ -29,6 +29,20 @@ const page = () => {
                 className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
             </div>
+            <div className="relative">
+                <label
+                htmlFor="Country"
+                className="leading-7 text-sm text-gray-600"
+                >
+                Country
+                </label>
+                <input
+                type="Country"
+                id="Country"
+                name="Country"
+                className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+            </div>
             </div>
             <div className="p-2 w-1/2">
             <div className="relative">
@@ -45,6 +59,21 @@ const page = () => {
                 className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
             </div>
+    
+            <div className="relative">
+                <label
+                htmlFor="telephone"
+                className="leading-7 text-sm text-gray-600"
+                >
+                Telephone Number
+                </label>
+                <input
+                type="telephone"
+                id="telephone"
+                name="telephone"
+                className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+            </div>
             </div>
             <div className="p-2 w-full">
             <div className="relative">
@@ -52,7 +81,7 @@ const page = () => {
                 htmlFor="message"
                 className="leading-7 text-sm text-gray-600"
                 >
-                Message
+                Message (included estimate of quantities)
                 </label>
                 <textarea
                 id="message"
