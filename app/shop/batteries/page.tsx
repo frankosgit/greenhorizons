@@ -4,6 +4,7 @@ import { useCart } from '@/context/cart'
 
 const Batteries = () => {
 
+
     const product = {
         id: 1,
         title: "Steg Lyft 15.5",
