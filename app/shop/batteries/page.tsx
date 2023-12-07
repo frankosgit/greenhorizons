@@ -11,7 +11,7 @@ const Batteries = () => {
         url: "https://gronhorisont.se/____impro/1/onewebmedia/Camac.jpg?etag=%227470-65156341%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=263%2B148&extract=56%2B0%2B137%2B148&quality=85",
         stock: true,
         priceOnQuote: true,
-        category: "lifting",
+        category: "Lifting Machinery",
         company: "Camac"
     }
 
@@ -32,10 +32,11 @@ const Batteries = () => {
                 <div className="badge badge-secondary">{product.stock ? "Fast delivery!" : "1-2 weeks delivery"}</div>
                 </h2>
                 <p>{product.description}</p>
-                <div className="card-actions flex items-center">
-                <Link href = "/contactus"><button className="btn btn-primary">GET QUOTE</button></Link>
-                <div className="badge badge-outline ml-auto">{product.category}</div> 
-                <div className="badge badge-outline">{product.company}</div>
+                <div className="card-actions flex items-center my-2">
+                    <div className="badge badge-outline">{product.category}</div> 
+                    <div className="badge badge-outline">{product.company}</div>
+                    <a target="_blank" href="https://www.camacsa.com/en/01-construction-lifting-machinery.html"><div className="badge badge-outline">Läs mer</div></a>
+                    <Link href = "/contactus"><button className="btn btn-primary">GET QUOTE</button></Link>
                 </div>
             </div>
         </div>
