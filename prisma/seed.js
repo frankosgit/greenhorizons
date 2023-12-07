@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require ('@prisma/client')
 
 const prisma = new PrismaClient();
 
@@ -65,6 +65,7 @@ async function seedProducts() {
           description: "MONO PERC Bifacial Module 21.25% Maximal effektivitet 15 ÅR Produktgaranti",
           url: "https://gronhorisont.se/____impro/1/onewebmedia/Handersun/5/HN18-54HT.jpg?etag=%222abb93-650854eb%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=137%2B194&extract=0%2B13%2B137%2B148&quality=85",
           stock: true,
+          priceOnQuote: true,
           category: "solarPanel",
           company: "Handersun"
         },
@@ -114,24 +115,55 @@ async function seedProducts() {
         },
       });
       await prisma.products.create({
-        data: { title: "SMR100 Rail", description: "Mill Finish, 4260mm A20422-4260-ML Material Aluminium 6005-T5 Vikt 0.614 kg/m Högsta Draghållfasthet 260 MPa Flytgräns 240 Mpa Sektionsegenskaper SX: 3.21 cm³ SY: 2.39 cm³",
-          url: "https://gronhorisont.se/____impro/1/Sunmodo/Bilder/A20422-XXX-ML.jpg?etag=%221245d8-650aac14%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=202%2B148&extract=53%2B0%2B137%2B148&quality=85",
-          stock: true,
-          priceOnQuote: true,
-          category: "mounting",
-          company: "Sunmodo"
+        data: { title: "SMR100 Rail",
+        description: "Mill Finish, 4260mm A20422-4260-ML Material Aluminium 6005-T5 Vikt 0.614 kg/m Högsta Draghållfasthet 260 MPa Flytgräns 240 Mpa Sektionsegenskaper SX: 3.21 cm³ SY: 2.39 cm³",
+        url: "https://gronhorisont.se/____impro/1/Sunmodo/Bilder/A20422-XXX-ML.jpg?etag=%221245d8-650aac14%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=202%2B148&extract=53%2B0%2B137%2B148&quality=85",
+        stock: true,
+        priceOnQuote: true,
+        category: "mounting",
+        company: "Sunmodo"
         },
       });
       await prisma.products.create({
-        data: { title: "SMR100 Rail", description: "Black Anodized, 4260 mm A20422-4260-BK Material Aluminium 6005-T5 Vikt 0.614 kg/m Högsta Draghållfasthet 260 MPa Flytgräns 240 Mpa Sektionsegenskaper SX: 3.21 cm³ SY: 2.39 cm³",
-          url: "https://gronhorisont.se/____impro/1/Sunmodo/Bilder/A20422-XXX-BK.jpg?etag=%22d73b8-650aac14%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=202%2B148&extract=56%2B0%2B137%2B148&quality=85",
-          stock: true,
-          priceOnQuote: true,
-          category: "mounting",
-          company: "Sunmodo"
+        data: { title: "SMR100 Rail",
+        description: "Black Anodized, 4260 mm A20422-4260-BK Material Aluminium 6005-T5 Vikt 0.614 kg/m Högsta Draghållfasthet 260 MPa Flytgräns 240 Mpa Sektionsegenskaper SX: 3.21 cm³ SY: 2.39 cm³",
+        url: "https://gronhorisont.se/____impro/1/Sunmodo/Bilder/A20422-XXX-BK.jpg?etag=%22d73b8-650aac14%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=202%2B148&extract=56%2B0%2B137%2B148&quality=85",
+        stock: true,
+        priceOnQuote: true,
+        category: "mounting",
+        company: "Sunmodo"
         },
       });
-    // Add other product entries similarly
+      await prisma.products.create({
+        data: { title: "SMR100 Rail", 
+        description: "Black Anodized, 4260 mm A20422-4260-BK Material Aluminium 6005-T5 Vikt 0.614 kg/m Högsta Draghållfasthet 260 MPa Flytgräns 240 Mpa Sektionsegenskaper SX: 3.21 cm³ SY: 2.39 cm³",
+        url: "https://gronhorisont.se/____impro/1/Sunmodo/Bilder/A20422-XXX-BK.jpg?etag=%22d73b8-650aac14%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=202%2B148&extract=56%2B0%2B137%2B148&quality=85",
+        stock: true,
+        priceOnQuote: true,
+        category: "inverter",
+        company: "Fox"
+        },
+      });
+      await prisma.products.create({
+        data: { title: "T SERIES (G3)", 
+        description: "The T Series inverter range is aimed at 3-phase domestic and small-scale commercial installations, offering unrivalled performance and versatility for increased yield potential and longer generation windows. The 3-phase T Series inverter options range from 3kW to 25kW.",
+        url: "https://gronhorisont.se/____impro/1/onewebmedia/R%20Series.png?etag=%2211fe0-651fae50%22&sourceContentType=image%2Fpng&ignoreAspectRatio&resize=181%2B148&extract=24%2B0%2B137%2B148",
+        stock: true,
+        priceOnQuote: true,
+        category: "inverter",
+        company: "Fox"
+        },
+      });
+      await prisma.products.create({
+        data: { title: "H3/AC3 SERIES",
+        description: "Harness the power of the sun day and night with the ground-breaking range of Hybrid & AC inverters from Fox ESS. Full of advanced features and compatible with our very own range of high-voltage batteries, the hybrid range from Fox ESS. It is a new class of Inverter.",
+        url: "https://gronhorisont.se/____impro/1/onewebmedia/H3AC3-2-260x290.png?etag=%226896-651fe7fe%22&sourceContentType=image%2Fpng&ignoreAspectRatio&resize=137%2B153&extract=0%2B0%2B137%2B148",
+        stock: true,
+        priceOnQuote: true,
+        category: "inverter",
+        company: "Fox"
+        },
+      });
 
   } catch (error) {
     console.error(error);

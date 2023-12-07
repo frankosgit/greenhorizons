@@ -9,3 +9,52 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model Addresses {
+  id        Int      @id @default(autoincrement())
+  user_id   String  @unique @db.Uuid
+  address   String
+  city      String
+  state     String
+  zip       String
+  created_at DateTime @default(now())
+}
+
+model Orders {
+  id       Int      @id @default(autoincrement())
+  user_id   String  @db.Uuid
+  stripe_id String
+  name     String
+  email    String
+  address  String
+  city     String
+  state    String
+  zip      String
+  country String
+  total Int
+  created_at DateTime @default(now())
+  order_items OrderItems[]
+}
+
+model OrderItems {
+  id       Int      @id @default(autoincrement())
+  order_id Int
+  product_id Int
+  created_at DateTime @default(now())
+  orders Orders @relation(fields: [order_id], references: [id])
+  products Products @relation(fields: [product_id], references: [id])
+}
+
+model Products {
+  id        Int      @id @default(autoincrement())
+  title      String
+  description String
+  url       String
+  priceOnQuote     Boolean
+  category     String
+  company    String
+  stock Boolean
+  created_at DateTime @default(now())
+  order_items OrderItems[]
+}
