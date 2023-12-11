@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ToastContainer/>
+          <CartProvider>
             <Navbar/>
-            <CartProvider>
              {children}
             </CartProvider>
             <Footer/>

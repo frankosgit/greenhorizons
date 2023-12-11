@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, Provider } from "react";
 
 type Product = {
     id: number;
@@ -19,23 +19,27 @@ type ContextProps = {
     getCart: () => Product[]; 
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
-    isItemAddedToCart: (product: Product) => void;
+    isItemAdded: boolean;
+    isItemAddedToCart: (product: Product) => void; 
+    setIsItemAdded: React.Dispatch<React.SetStateAction<boolean>>;
     cartCount: () => number | undefined;
     cartTotal: () => number | undefined;
     clearCart: () => void;
   };
   
-  const Context = createContext<ContextProps | undefined>(undefined);
+  const Context = createContext<ContextProps | null>(null);
 
 
 type ProviderProps = {
-    children: ReactNode;
+    children: React.ReactNode;
 }
 
 
-const Provider: React.FC<ProviderProps> = ({ children }) => {
+export default function Provider({ 
+    children,
+ }: ProviderProps) {
     const router = useRouter();
-    const [isItemAdded, setIsItemAdded] = useState(false)
+    const [isItemAdded, setIsItemAdded] = useState<boolean>(false)
 
 
     const getCart = () => {
@@ -144,12 +148,21 @@ const Provider: React.FC<ProviderProps> = ({ children }) => {
         isItemAddedToCart,
         cartCount,
         cartTotal,
-        clearCart
+        clearCart,
+        isItemAdded,
+        setIsItemAdded
     }
 
     return <Context.Provider value={exposed}>{children}</Context.Provider>
 }
 
 
-export const useCart = () => useContext(Context)
-export default Provider
+export type { ContextProps }
+
+export const useCart = () => {
+    const context = useContext(Context);
+    if (!context) {
+      throw new Error('useCart must be used within a CartProvider');
+    }
+    return context;
+  };

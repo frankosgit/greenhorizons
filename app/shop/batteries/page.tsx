@@ -1,11 +1,15 @@
+"use client";
+
 import React from 'react'
 import Link from 'next/link'
-import { useCart } from '@/context/cart'
+import { useCart, ContextProps } from '@/context/cart'
+import { toast } from 'react-toastify'
 
 const Batteries = () => {
 
+    const cart = useCart() as ContextProps
 
-    const product = {
+    const product = {   
         id: 1,
         title: "Steg Lyft 15.5",
         description: "Stege med lyft 15.5m klarar last på 150kg Designad för att lyfta solcellspaneler",
@@ -51,7 +55,24 @@ const Batteries = () => {
                 </h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div className="card-actions flex items-center">
-                <Link href = "/contactus"><button className="btn btn-primary">GET QUOTE</button></Link>
+                <Link href = "/contactus">
+                    <button 
+                onClick={() => {
+                    if (cart.isItemAdded) {
+                        cart.removeFromCart(product)
+                        cart.setIsItemAdded(false)
+                        toast.info("Item removed from cart")
+                    } else {
+                        cart.addToCart(product)
+                        cart.setIsItemAdded(true)
+                        toast.success("Item added to cart")
+                    }
+                }}
+                className={`btn btn-primary
+                ${cart.isItemAdded ? "bg-green-500" : "bg-primary"}
+                `}
+
+                >{cart.isItemAdded ? "remove from cart" : "add to cart"}</button></Link>
                 <div className="badge badge-outline ml-auto">Hardware</div> 
                 <div className="badge badge-outline">Hannersun</div>
                 </div>
