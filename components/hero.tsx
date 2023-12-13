@@ -1,8 +1,36 @@
-import React from 'react'
+"use client"
+
+import React, { use } from 'react'
 import Link from 'next/link'
+import { useUser } from "@/context/usercontext"
 
 
 const Hero = () => {
+
+  const user = useUser()
+
+  const handleSignOut = () => {
+    if (user && user?.id) {
+      user.signOut()
+    }
+  }
+
+  const isLoggedInButton = () => {
+    if (user && user?.id) {
+      return (
+        <Link href ="/getquote" 
+        className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary"
+        onClick={handleSignOut}>
+        Log out</Link>
+      )
+  } else {
+    return (
+      <Link href ="/login" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Log in</Link>
+    )
+  }
+}
+
+
   return (
         <>
         <div className="hero min-h-screen font-mono bg-warning">
@@ -12,8 +40,7 @@ const Hero = () => {
             <p className="py-6">Ditt förstahandsval för hållbar solenergi!</p>
             <div className="flex mx-auto justify-center"> 
             <div className="flex-column">
-            <Link href="/login"><button className="btn btn-primary">Log in</button></Link>
-            <Link href="/register"><p className="btn-ghost normal-case text-center text-xs mt-1">register</p></Link>
+            {isLoggedInButton()}
             </div>
             <Link href="/shop"><button className="btn btn-primary ml-6">Our products</button></Link>
             </div>

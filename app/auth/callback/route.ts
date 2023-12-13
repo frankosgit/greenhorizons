@@ -1,0 +1,34 @@
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function GET(req: NextRequest) {
+    const requestURL = new URL(req.url)
+    const code = requestURL.searchParams.get('code')
+    if (code) {
+      const cookieStore = cookies()
+      const supabase = createRouteHandlerClient({
+        cookies: () => cookieStore,
+      })
+      await supabase.auth.exchangeCodeForSession(code)
+    }
+    return NextResponse.redirect(requestURL.origin)
+  }
+
+
+export async function POST(req: NextRequest) {
+  const cookieStore = cookies()
+  const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (session) {
+    await supabase.auth.signOut()
+  }
+
+  return NextResponse.redirect(new URL('/', req.url), {
+    status: 302,
+  })
+}
