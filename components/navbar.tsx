@@ -39,6 +39,10 @@ const Navbar = () => {
               Profile
               <span className="badge"></span>
             </Link>
+            <Link href="/address" className="justify-between">
+              Address
+              <span className="badge"></span>
+            </Link>
             <Link href="/" className="justify-between">
               {isLoggedInMenuButton()}
               <span className="badge"></span>
