@@ -18,7 +18,10 @@ model Addresses {
   city      String
   state     String
   zip       String
+  name      String
+  country   String
   created_at DateTime @default(now())
+
 }
 
 model Orders {

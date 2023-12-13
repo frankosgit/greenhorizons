@@ -3,6 +3,7 @@ import Footer from "@/components/footer"
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import CartProvider from "@/context/cart"
+import { UserContextProvider } from "@/context/usercontext"
 
 import './globals.css'
 
@@ -21,12 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ToastContainer/>
-          <CartProvider>
-            <Navbar/>
-             {children}
+          <UserContextProvider>
+            <CartProvider>
+              <Navbar/>
+              {children}
             </CartProvider>
-            <Footer/>
-
+              <Footer/>
+          </UserContextProvider>
       </body>
     </html>
   )
