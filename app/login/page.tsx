@@ -6,6 +6,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 import { useRouter } from 'next/navigation'
+import MainLayout from '../layouts/mainlayout'
 
 
 const AuthPage = () => {
@@ -41,6 +42,7 @@ const AuthPage = () => {
 
 
   return (
+    <MainLayout>
     <section className="mt-4 font-mono bg-default mb-12">
     <div className="container h-full px-6">
       <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
@@ -157,6 +159,7 @@ const AuthPage = () => {
     </div>
 
   </section>
+  </MainLayout>
   )
 }
 

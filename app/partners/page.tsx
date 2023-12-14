@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import MainLayout from '../layouts/mainlayout'
 
 interface RadioInputProps {
   type: "radio"
@@ -9,7 +10,7 @@ interface RadioInputProps {
 
 const Partners: React.FC<RadioInputProps> = ({checked}) => {
   return (
-    <>
+    <MainLayout>
     <div className="hero min-h-screen bg-base-100 font-mono">
         <div className="hero-content lg:flex-row">
         <img src="/partners.jpg" className="max-w-sm rounded-lg shadow-2xl" />
@@ -163,7 +164,7 @@ At the heart of our operation is our advanced R&D centre in Wuxi, where hundreds
                 </div>
             </div>
         </div>
-    </>
+    </MainLayout>
     )
 }
 

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useUser } from "@/context/usercontext"
+import MainLayout from '../layouts/mainlayout'
 
 const Contact = () => {
     const user = useUser()
@@ -81,11 +82,7 @@ const Contact = () => {
 
 
   return (
-
-
-
-    
-
+            <MainLayout>
                 <div className="font-mono">
                 <section className="text-gray-700 body-font relative">
                 <div className="container px-5 py-24 mx-auto">
@@ -124,7 +121,7 @@ const Contact = () => {
                 </div>
                 </section>
             </div>
-
+</MainLayout>
   )
 }
 
