@@ -1,10 +1,27 @@
 import React from 'react'
+import MainLayout from '../layouts/mainlayout'
+import CheckOutItem from '@/components/CheckoutItem'
 
 const page = () => {
+
+    const product = {   
+        id: 1,
+        title: "Steg Lyft 15.5",
+        description: "Stege med lyft 15.5m klarar last på 150kg Designad för att lyfta solcellspaneler",
+        url: "https://gronhorisont.se/____impro/1/onewebmedia/Camac.jpg?etag=%227470-65156341%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=263%2B148&extract=56%2B0%2B137%2B148&quality=85",
+        stock: true,
+        priceOnQuote: true,
+        category: "Lifting Machinery",
+        company: "Camac"
+    }
+
   return (
-    <div className="font-mono">
+    <MainLayout>
+       
+    <div className="font-mono flex">
+    <div className='w-1/2 p-4'>
     <section className="text-gray-700 body-font relative">
-    <div className="container px-5 py-24 mx-auto">
+    <div className="container py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             Get a quote
@@ -97,7 +114,19 @@ const page = () => {
         </div>
     </div>
     </section>
+    </div>
+
+
+<div className='w-1/2 p-4'>
+    <h1 className='mb-8'>Items for quote:</h1>
+<CheckOutItem
+                            key = {product.id}
+                            product = {product}
+                        /> 
 </div>
+</div>
+                       
+</MainLayout>
   )
 }
 

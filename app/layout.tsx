@@ -24,10 +24,8 @@ export default function RootLayout({
         <ToastContainer/>
           <UserContextProvider>
             <CartProvider>
-              <Navbar/>
               {children}
             </CartProvider>
-              <Footer/>
           </UserContextProvider>
       </body>
     </html>

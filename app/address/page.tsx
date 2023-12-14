@@ -1,10 +1,11 @@
 "use client"
 import { useUser } from '@/context/usercontext'
-import React from 'react'
+import React, { use } from 'react'
 import TextInput from '@/components/text-input'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import useUserAddress from '../hooks/useUserAddress'
+import useIsLoading from '../hooks/useIsLoading'
 
 const page = () => {
 
@@ -20,25 +21,41 @@ const page = () => {
     const [isUpdatingAddress, setIsUpdatingAddress] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
 
-    const showError = (type) => {
+/*  const showError = (type) => {
         if (Object.entries(error).length > 0 && error?type == type) {
-            return error?.message
+            return error.message
             }   
         return ''
-    }
+    } */
 
     const getAddress = async () => {
+        if(user?.id == null || user?.id == undefined) {
+            useIsLoading(false)
+            return
+        }
         const response = await useUserAddress()
         if (response) {
             setTheCurrentAddress(response)
+            useIsLoading(false)
             return
         }
+        useIsLoading(false)
     }
 
     useEffect(()=> {
-        
-    })
+        useIsLoading(true)
+        getAddress()
+    }, [user])
+ 
 
+    const setTheCurrentAddress = (result) => {
+        setAddressId(result.id)
+        setName(result.name)
+        setAddress(result.address)
+        setCity(result.city)
+        setZip(result.zip)
+        setCountry(result.country)
+    }
 
   return (
     <div 

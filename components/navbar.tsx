@@ -148,8 +148,10 @@ const isLoggedInMenuButton = () => {
                   <span className="font-bold text-lg">8 Items</span>
                   <span className="text-info">Get price on request</span>
                   <div className="card-actions">
-                  <Link href="/getquote">Checkout
-                    <button className="btn btn-primary btn-block">Get a quote</button></Link>
+                  Checkout
+                  <Link href="/getquote"> <button className="btn btn-primary btn-block">Get quote</button></Link>
+                  <Link href="/cart"> <button className="btn btn-primary btn-block">Cart</button></Link>
+
                   </div>
                 </div>
               </div>

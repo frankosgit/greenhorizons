@@ -1,6 +1,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import MainLayout from '../layouts/mainlayout'
 
 interface RadioInputProps {
     type: "radio"
@@ -10,7 +11,7 @@ interface RadioInputProps {
 
 const Aboutus: React.FC<RadioInputProps> =  ( {type, name, checked}) => {
   return (
-
+    <MainLayout>
     <div className="w-100 font-mono pb-40">
 
     <div className="hero min-h-screen bg-base-100">
@@ -93,6 +94,8 @@ const Aboutus: React.FC<RadioInputProps> =  ( {type, name, checked}) => {
         
     
 </div>
+</MainLayout>
+
   )
 }
 
