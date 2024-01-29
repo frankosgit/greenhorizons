@@ -4,13 +4,14 @@ import React from 'react'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { useState, useEffect } from 'react'
+import Loading from '@/components/loads'
 
 type MainLayoutProps = {
     children: React.ReactNode;
 }
 
 const MainLayout = ({children}:MainLayoutProps) => {
-    const [isLoading, setIsLoading] = React.useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEffect(() => {
         window.addEventListener("storage", function(){
@@ -21,7 +22,7 @@ const MainLayout = ({children}:MainLayoutProps) => {
 
   return (
     <div id= "MainLayout" className='min-w-[1050px] max-w-[1440px] mx-auto'>
-        {isLoading ? <isLoading/> : <div></div>}
+        {isLoading ? <Loading/> : <div></div>}
         <Navbar/>
          {children}
         <Footer/>

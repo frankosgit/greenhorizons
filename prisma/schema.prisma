@@ -8,20 +8,20 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schema = "public, auth"
 }
 
 
-model Addresses {
+model Addresses { 
   id        Int      @id @default(autoincrement())
-  user_id   String  @unique @db.Uuid
+  user_id   String   @unique @db.Uuid
+  addressId String   @unique
+  name      String
   address   String
   city      String
-  state     String
-  zip       String
-  name      String
+  postcode  String
   country   String
   created_at DateTime @default(now())
-
 }
 
 model Orders {
@@ -60,4 +60,23 @@ model Products {
   stock Boolean
   created_at DateTime @default(now())
   order_items OrderItems[]
+}
+
+model profiles {
+  id        String    @id @default(uuid()) @db.Uuid
+  updated_at DateTime @updatedAt
+  username      String
+  full_name    String
+  avatar_url   String
+  website   String
+}
+
+model SupabaseUser {
+  id        String    @id @default(uuid()) @db.Uuid
+  email     String
+  phone     String?
+  provider  String
+  created   DateTime
+  last_sign_in DateTime
+  user_uid  String
 }
