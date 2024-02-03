@@ -3,10 +3,41 @@ import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import { useCart, ContextProps } from '@/context/cart'
 import { useUser } from "@/context/usercontext";
+import debounce from "debounce"
+import { BiLoaderCircle } from 'react-icons/bi';
+import ProductType from '@/types/product';
+import { Products } from '@prisma/client';
 
 const Navbar = () => {
   const cart = useCart() as ContextProps
   const user = useUser()
+  const [items, setItems] = useState<Products[] | null>(null)
+  const [isSearching, setIsSearching] = useState(false)
+
+  const handleSearchName = debounce(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === '') {
+      setItems(null)
+      return
+    }
+    setIsSearching(true)
+
+    try {
+      const response = await fetch(`/api/products/search-by-name/${e?.target.value}`)
+      const result = await response.json()
+
+      if (result) {
+        setItems(result)
+        setIsSearching(false)
+
+      }
+      setIsSearching(false)
+
+    } catch (err) {
+      console.log(err)
+      alert('Error searching for products')
+    }
+
+  }, 500)
 
   const isLoggedIn = () => {
     console.log(user)
@@ -15,6 +46,7 @@ const Navbar = () => {
         <button
           className='flex items-center gap-2 hover:underline cursor-pointer'
         >
+
           <div>Hi, {user.name}</div>
           <img src="" alt="" />
         </button>
@@ -35,15 +67,16 @@ const Navbar = () => {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li>{user.name}</li>
             <li>
-              <Link href="/auth" className="justify-between">
+              {/*               <Link href="/auth" className="justify-between">
                 Profile
                 <span className="badge"></span>
-              </Link>
-              <Link href="/address" className="justify-between">
+              </Link> */}
+              {/*               <Link href="/address" className="justify-between">
                 Address
                 <span className="badge"></span>
-              </Link>
+              </Link> */}
               <Link href="/" className="justify-between">
+
                 {isLoggedInMenuButton()}
                 <span className="badge"></span>
               </Link>
@@ -83,13 +116,13 @@ const Navbar = () => {
       return (
 
         <Link href="/"
-          className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary"
+          className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary"
           onClick={handleSignOut}>
           Log out</Link>
       )
     } else {
       return (
-        <Link href="/login" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Log in</Link>
+        <Link href="/login" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Log in</Link>
       )
     }
   }
@@ -131,6 +164,10 @@ const Navbar = () => {
       <div className='mr-40'>
         {isLoggedIn()}
       </div>
+      <input onChange={handleSearchName} type="text" placeholder="Search" className="input input-bordered w-full max-w-xs mr-4" />
+      {isSearching ? <BiLoaderCircle className="animate-spin" size={22} /> : null}
+      {items && items.length > 0 ? <div className="absolute z-50 bg-white w-52 h-52">{items?.map((item) => <div key={item.id}>{item.title}</div>)}</div> : null}
+
       <Link href="/shop" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Store</Link>
       {isLoggedInButton()}
       <Link href="/contact" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Contact</Link>

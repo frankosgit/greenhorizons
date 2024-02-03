@@ -1,4 +1,4 @@
-"use client"
+/* "use client"
 import { useUser } from '@/context/usercontext'
 import TextInput from '@/components/text-input'
 import { useRouter } from 'next/navigation'
@@ -101,7 +101,7 @@ const page = () => {
         }
         try {
             setIsUpdatingAddress(true)
-            const rest = await useCreateAddress({
+            const response = await useCreateAddress<address>({
                 addressId,
                 name,
                 address,
@@ -110,7 +110,10 @@ const page = () => {
                 country,
             })
         }
-    }
+        catch(error) {
+
+        }
+      }
 
   return (
     <MainLayout>
@@ -142,4 +145,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page */

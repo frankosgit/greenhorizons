@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { User } from '@supabase/supabase-js'
 
 export type userContextType = {
     avatar_url?: string | null
@@ -19,14 +20,6 @@ type userContextProviderType = {
     children: React.ReactNode;
 };
 
-type AuthUser = {
-        avatar_url: string | null
-        full_name: string | null
-        id: string
-        updated_at: string | null
-        name: string | null
-        website: string | null
-}
 
 
 export const userContext = createContext({} as userContextType);
@@ -34,7 +27,7 @@ export const userContext = createContext({} as userContextType);
 export const UserContextProvider = ({ children }: userContextProviderType) => {
     const router = useRouter();
 
-    const [user, setUser] = useState<any | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [id, setId] = useState<string | null>(null);
     const [email, setEmail] = useState<string | null>(null);
     const [name, setName] = useState<string | null>(null);
@@ -57,6 +50,8 @@ export const UserContextProvider = ({ children }: userContextProviderType) => {
         const res = await supabaseClient.auth.getUser()
         if (res && res.data.user) {
             const theUser = res.data.user
+
+
 
             if (theUser) {
                 setUser(theUser)

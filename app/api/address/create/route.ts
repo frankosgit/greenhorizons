@@ -2,17 +2,16 @@ import prisma from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
-import { error } from "console";
+import { NextApiRequest } from "next";
 
-export async function POST(req: any) {
+export async function POST(req: NextApiRequest) {
     const supabase = createServerComponentClient( {cookies })
 
     try {
         const { data : { user }}  = await supabase.auth.getUser()
         if (!user) throw Error()
 
-        const body = await req.json();
+        const body = await req.body();
 
         const res = await prisma.addresses.create({
             data: {

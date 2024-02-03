@@ -23,7 +23,6 @@ type ContextProps = {
     isItemAddedToCart: (product: Product) => void; 
     setIsItemAdded: React.Dispatch<React.SetStateAction<boolean>>;
     cartCount: () => number | undefined;
-    cartTotal: () => number | undefined;
     clearCart: () => void;
   };
   
@@ -117,22 +116,7 @@ export default function Provider({
         }
     }
 
-    const cartTotal = () => {
-        let cart = []
-        let total = 0
-        if (typeof localStorage !== 'undefined') {
-            const storedCart = localStorage.getItem('cart')
 
-            if (storedCart !== null) {
-                cart = JSON.parse(storedCart)
-            }
-            for (let i = 0; i < cart.length; i++) {
-                const element = cart[i];
-                total += element.price
-            }
-            return total
-        }
-    }
 
 
     const clearCart = () => {
@@ -147,7 +131,6 @@ export default function Provider({
         removeFromCart,
         isItemAddedToCart,
         cartCount,
-        cartTotal,
         clearCart,
         isItemAdded,
         setIsItemAdded

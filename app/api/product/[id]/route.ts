@@ -1,22 +1,20 @@
 import prisma from "@/app/lib/prisma";
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server";
 
-
-export async function GET(req: any, context: { params: { id: any; }; }) {
-
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
     try {
-        const { id } = context.params
+        const { id } = context.params;
 
         const product = await prisma.products.findFirst({
-            where: {id: Number(id)}
-        })
+            where: { id: Number(id) }
+        });
 
         await prisma.$disconnect();
-        return NextResponse.json(product)
 
-    } catch(error) {
-        console.log(error)
+        return NextResponse.json(product);
+    } catch (error) {
+        console.error("Error fetching product by ID:", error);
         await prisma.$disconnect();
-        return new NextResponse('Something went wrong', { status: 400 })
+        return new NextResponse('Something went wrong', { status: 400 });
     }
 }

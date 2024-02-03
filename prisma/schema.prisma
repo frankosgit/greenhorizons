@@ -8,75 +8,73 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schema = "public, auth"
 }
 
-
-model Addresses { 
-  id        Int      @id @default(autoincrement())
-  user_id   String   @unique @db.Uuid
-  addressId String   @unique
-  name      String
-  address   String
-  city      String
-  postcode  String
-  country   String
+model Addresses {
+  id         Int      @id @default(autoincrement())
+  user_id    String   @unique @db.Uuid
+  addressId  String   @unique
+  name       String
+  address    String
+  city       String
+  postcode   String
+  country    String
   created_at DateTime @default(now())
 }
 
 model Orders {
-  id       Int      @id @default(autoincrement())
-  user_id   String  @db.Uuid
-  stripe_id String
-  name     String
-  email    String
-  address  String
-  city     String
-  state    String
-  zip      String
-  country String
-  total Int
-  created_at DateTime @default(now())
+  id          Int          @id @default(autoincrement())
+  user_id     String       @db.Uuid
+  stripe_id   String
+  name        String
+  email       String
+  address     String
+  city        String
+  state       String
+  zip         String
+  country     String
+  total       Int
+  created_at  DateTime     @default(now())
   order_items OrderItems[]
 }
 
 model OrderItems {
-  id       Int      @id @default(autoincrement())
-  order_id Int
+  id         Int      @id @default(autoincrement())
+  order_id   Int
   product_id Int
   created_at DateTime @default(now())
-  orders Orders @relation(fields: [order_id], references: [id])
-  products Products @relation(fields: [product_id], references: [id])
+  orders     Orders   @relation(fields: [order_id], references: [id])
+  products   Products @relation(fields: [product_id], references: [id])
 }
 
 model Products {
-  id        Int      @id @default(autoincrement())
-  title      String
-  description String
-  url       String
-  priceOnQuote     Boolean
+  id           Int          @id @default(autoincrement())
+  title        String
+  description  String
+  url          String
+  priceOnQuote Boolean
   category     String
-  company    String
-  stock Boolean
-  created_at DateTime @default(now())
-  order_items OrderItems[]
+  company      String
+  stock        Boolean
+  created_at   DateTime     @default(now())
+  order_items  OrderItems[]
 }
 
 model profiles {
-  id        String    @id @default(uuid()) @db.Uuid
+  id         String   @id @default(uuid()) @db.Uuid
   updated_at DateTime @updatedAt
-  username      String
-  full_name    String
-  avatar_url   String
-  website   String
+  username   String
+  full_name  String
+  avatar_url String
+  website    String
 }
 
 model SupabaseUser {
-  id        String    @id @default(uuid()) @db.Uuid
-  email     String
-  phone     String?
-  provider  String
-  created   DateTime
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String
+  phone        String?
+  provider     String
+  created      DateTime
   last_sign_in DateTime
-  user_uid  String
+  user_uid     String
 }

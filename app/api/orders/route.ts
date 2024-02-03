@@ -1,11 +1,11 @@
 import prisma from "@/app/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
 import { error } from "console";
 
-export async function GET(req: any) {
+export async function GET(req: NextRequest) {
     const supabase = createServerComponentClient( {cookies })
 
     try {
