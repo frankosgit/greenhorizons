@@ -165,10 +165,9 @@ const Navbar = () => {
         {isLoggedIn()}
       </div>
       <input onChange={handleSearchName} type="text" placeholder="Search" className="input input-bordered w-full max-w-xs mr-4" />
-      {/* The button to open modal */}
-      <label htmlFor="my_modal_6" className="btn mr-4">Search</label>
+      <label htmlFor="my_modal_6" className="btn mr-4">       {isSearching ? <BiLoaderCircle className="animate-spin" size={22} /> : "Search"}
+      </label>
 
-      {/* Put this part before </body> tag */}
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal" role="dialog">
         <div className="modal-box h-[300px] w-[600px]">
@@ -177,9 +176,9 @@ const Navbar = () => {
 
           {items && items.length > 0 ?
 
-            <div className="p-6 absolute z-50 w-50% left-0 top-12 max-w-[500px] h-auto">{items?.map((item) => <div className='m-2 p-4 flex border align-center hover:bg-gray-200 cursor-pointer' key={item.id}>{item.title}  <img className='w-[50px]' src={item.url} alt="" /></div> )}</div> : null}
+            <div className="p-6 absolute z-50 w-50% left-0 top-12 max-w-[500px] h-auto">{items?.map((item) => <div className='m-2 p-4 flex border align-center hover:bg-gray-200 cursor-pointer' key={item.id}> <Link href={`/shop/${item?.category}/${item?.id}`}>{item.title}  <img className='w-[50px]' src={item.url} alt="" /> </Link></div>)}</div> : "Your search critera returned no results"}
           <div className="modal-action">
-            <label htmlFor="my_modal_6" className="btn">Close!</label>
+            <label htmlFor="my_modal_6" className="btn">Close</label>
           </div>
         </div>
       </div>
