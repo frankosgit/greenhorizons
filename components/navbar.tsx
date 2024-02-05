@@ -155,7 +155,7 @@ const Navbar = () => {
         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <Link href="/aboutus" className='mb-2'><li>About us</li></Link>
           <Link href="/partners" className='mb-2'><li>Partners</li></Link>
-          <Link href="/shop" className='mb-2'><li>Our products</li></Link>
+          <Link href="/products" className='mb-2'><li>Our products</li></Link>
         </ul>
       </div>
       <div className="flex-1">
@@ -184,7 +184,7 @@ const Navbar = () => {
       </div>
 
 
-      <Link href="/shop" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Store</Link>
+      <Link href="/products" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Store</Link>
       {isLoggedInButton()}
       <Link href="/contact" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Contact</Link>
 

@@ -11,27 +11,29 @@ import useIsLoading from '@/app/hooks/useIsLoading';
 
 const Lifting = () => {
 
-        const cart = useCart() as ContextProps
-        const [products, setProducts] = useState<Products[]>([])
-    
-        useEffect(() => {
-            useIsLoading(true)
-            const getProducts = async () => {
-                try {
-                    const response = await fetch("/api/products?category=lifting")
-                    const result = await response.json()
-                    setProducts(result)
-                    
-                } catch (error) {
-                    toast.error("Error loading products")
-                    useIsLoading(false)
-                }
+    const cart = useCart() as ContextProps
+    const [products, setProducts] = useState<Products[]>([])
+    const category = "lifting";
+    const apiUrl = `/api/products/category/${category}`
+
+    useEffect(() => {
+        useIsLoading(true)
+        const getProducts = async () => {
+            try {
+                const response = await fetch(apiUrl)
+                const result = await response.json()
+                setProducts(result)
+
+            } catch (error) {
+                toast.error("Error loading products")
+                useIsLoading(false)
             }
-            getProducts();
-            useIsLoading(false)
-    
-    
-        }, [])
+        }
+        getProducts();
+        useIsLoading(false)
+
+
+    }, [])
 
 
     return (

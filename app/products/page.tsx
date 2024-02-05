@@ -26,7 +26,7 @@ const Shop = () => {
                       <p className="py-6 mb-20">High quality products from our hand-picked partners, <br /> for a great price</p>
                       <Link href = "#productHeader" 
                       onClick={() => scrollToElement("productHeader")}
-                      className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Explore Our Collection
+                      className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Explore Our Collection
                       </Link>
                       <Link href="/partners"><button className="btn btn-primary ml-20">Our partners</button></Link>
 

@@ -19,13 +19,13 @@ const Hero = () => {
     if (user && user?.id) {
       return (
         <Link href ="/getquote" 
-        className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary"
+        className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary"
         onClick={handleSignOut}>
         Log out</Link>
       )
   } else {
     return (
-      <Link href ="/login" className="btn btn-ghost normal-case text-m bg-accent text-black mr-4 bg-primary">Log in</Link>
+      <Link href ="/login" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Log in</Link>
     )
   }
 }
@@ -42,7 +42,7 @@ const Hero = () => {
             <div className="flex-column">
             {isLoggedInButton()}
             </div>
-            <Link href="/shop"><button className="btn btn-primary ml-6">Our products</button></Link>
+            <Link href="/products"><button className="btn btn-primary ml-6">Our products</button></Link>
             </div>
         </div>
 

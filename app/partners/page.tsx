@@ -20,7 +20,7 @@ const Partners: React.FC<RadioInputProps> = ({checked}) => {
             <h4 className="text-2xl  mb-20">We have established connections with industry leaders within solar to deliver quality equipment at the best prices</h4>
         </div>
         <Link href = "/contact"><button className="btn btn-primary ml-20">Contact</button></Link>
-        <Link href = "/shop"><button className="btn btn-primary ml-20">Our Products</button></Link>
+        <Link href = "/products"><button className="btn btn-primary ml-20">Our Products</button></Link>
         </div>
         
         </div>
