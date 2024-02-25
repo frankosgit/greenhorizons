@@ -8,7 +8,7 @@ const Similarproducts = () => {
     const [products, setProducts] = useState<ProductType[]>([])
     const getRandomProducts = async () => {
         try {
-            const response = await fetch("/api/products/get-random")
+            const response = await fetch("http://localhost:9090/products//random-products/")
             const result = await response.json()
             setProducts(result)
         } catch (error) {
