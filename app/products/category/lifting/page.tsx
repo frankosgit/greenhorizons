@@ -14,7 +14,7 @@ const Lifting = () => {
     const cart = useCart() as ContextProps
     const [products, setProducts] = useState<Products[]>([])
     const category = "lifting";
-    const apiUrl = `/api/products/category/${category}`
+    const apiUrl = `http://localhost:9090/products/get/category/${category}`
 
     useEffect(() => {
         useIsLoading(true)

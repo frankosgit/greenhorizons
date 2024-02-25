@@ -1,18 +1,14 @@
-import prisma from "@/app/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: NextRequest, context: { params: { category: string } }) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const { category } = req.query;
+
     try {
-        console.log("hello category endpoint")
-        const { category } = context.params; 
-        const products = await prisma.products.findMany({
-            where: { category: category }
-        });
-        await prisma.$disconnect();
-        return NextResponse.json(products);
+        const response = await fetch(`http://localhost:9090/products/get/category/${category}`);
+        const data = await response.json();
+        res.status(200).json(data);
     } catch (error) {
-        console.error("Error fetching products:", error);
-        await prisma.$disconnect();
-        return new NextResponse('Something went wrong', { status: 400 });
+        console.error('Error fetching category:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 }

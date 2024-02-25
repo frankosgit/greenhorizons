@@ -29,6 +29,13 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
         .catch(err => res.status(500).json({ message: err.message }));
 };
 
+const getProducts = async (req: Request, res: Response, next: NextFunction) => {
+    return Product.find()
+        .then(products => res.status(200).json(products))
+        .catch(err => res.status(500).json({ message: err.message }));
+};
+
+
 const getProductsByCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const category = req.params.category;
@@ -43,10 +50,18 @@ const getProductsByCategory = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-const getProducts = async (req: Request, res: Response, next: NextFunction) => {
-    return Product.find()
-        .then(products => res.status(200).json(products))
-        .catch(err => res.status(500).json({ message: err.message }));
+const searchProducts = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const searchQuery: string = req.query.q as string;
+        const products = await Product.find({ $text: { $search: searchQuery, $caseSensitive: false } });
+        if (products.length > 0) {
+            res.status(200).json(products);
+        } else {
+            res.status(404).json({ message: 'No products found for the specified search query' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 const getRandomProducts = async (req: Request, res: Response, next: NextFunction) => {
@@ -64,7 +79,7 @@ const getRandomProducts = async (req: Request, res: Response, next: NextFunction
 
 
 
-export default { getProduct, getProducts, createProduct, getProductsByCategory, getRandomProducts };
+export default { getProduct, getProducts, createProduct, getProductsByCategory, getRandomProducts, searchProducts };
 
 
 
