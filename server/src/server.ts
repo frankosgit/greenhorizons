@@ -3,6 +3,7 @@ import http from 'http';
 import mongoose from 'mongoose';
 import { config } from './config/config';
 import { urlencoded } from 'body-parser';
+import productRoutes from './routes/Product';
 
 const router = express();
 
@@ -40,6 +41,9 @@ const StartServer = () => {
         }
         next();
     })
+
+    /*routes*/
+    router.use('/products', productRoutes);
 
     /*healthcheck*/
     router.get('/ping', (req, res, next) => res.status(200).json({ message: 'pong' }));
