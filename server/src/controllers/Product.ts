@@ -49,9 +49,22 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
         .catch(err => res.status(500).json({ message: err.message }));
 };
 
+const getRandomProducts = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const products = await Product.aggregate([{ $sample: { size: 5 } }]);
+        if (products.length > 0) {
+            res.status(200).json(products);
+        } else {
+            res.status(404).json({ message: 'No products found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 
-export default { getProduct, getProducts, createProduct, getProductsByCategory };
+
+export default { getProduct, getProducts, createProduct, getProductsByCategory, getRandomProducts };
 
 
 
