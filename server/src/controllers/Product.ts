@@ -29,6 +29,20 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
         .catch(err => res.status(500).json({ message: err.message }));
 };
 
+const getProductsByCategory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const category = req.params.category;
+        const products = await Product.find({ category });
+        if (products.length > 0) {
+            res.status(200).json(products);
+        } else {
+            res.status(404).json({ message: 'No products found for the specified category' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     return Product.find()
         .then(products => res.status(200).json(products))
@@ -37,7 +51,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
 
 
 
-export default { getProduct, getProducts, createProduct };
+export default { getProduct, getProducts, createProduct, getProductsByCategory };
 
 
 
