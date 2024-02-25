@@ -8,11 +8,12 @@ import MainLayout from '@/app/layouts/mainlayout';
 import ProductCard from '@/components/productcard';
 import { Products } from '@prisma/client';
 import useIsLoading from '@/app/hooks/useIsLoading';
+import ProductType from '@/types/product';
 
 const Batteries = () => {
 
         const cart = useCart() as ContextProps
-        const [products, setProducts] = useState<Products[]>([])
+        const [products, setProducts] = useState<ProductType[]>([])
         const category = "solarPanel";
         const apiUrl = `http://localhost:9090/products/get/category/${category}`
     
@@ -43,7 +44,7 @@ const Batteries = () => {
     <div className="grid grid-cols-3 gap-5">
     {products.map((product) => (
         <ProductCard
-            key = {product.id}
+            key = {product._id}
             product = {product}
         />
     ))}

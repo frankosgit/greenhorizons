@@ -1,20 +1,35 @@
 "use client";
 import MainLayout from "@/app/layouts/mainlayout";
 import SimilarProducts from "@/components/similarproducts";
-import React from 'react'
+import ProductType from "@/types/product";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from 'react'
 
 const LiftingProduct = () => {
-    const product = {
-            id: 2,
-            title: "Unik Steglyft",
-            description: "Specialdesignad för solcellspaneler klarar last på 100kg kan fästas på ett flertal stegar Kräver ingen el, dras med hjälp av skruvdragare klarar höjder upp till 12.5m",
-            url: "https://www.camacsa.com/ImgCli/Ladder-Hoist-Driver-100.jpg",
-            stock: true,
-            priceOnQuote: true,
-            category: "Lifting",
-            company: "Camac"
-    }
+    const params = useParams()
+    const { id } = params
+    const [product, setProduct] = useState<ProductType | null>(null);
 
+    useEffect(() => {
+        console.log( id, "are the params")
+        const fetchProduct = async () => {
+            try {
+                const response = await fetch(`http://localhost:9090/products/category/solarpanel/${id}`);
+                const data = await response.json();
+                setProduct(data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
+
+        if ( id) {
+            fetchProduct();
+        }
+    }, [id]);
+
+    if (!product) {
+        return <div>Loading...</div>;
+    }
 
   return (
     <MainLayout>

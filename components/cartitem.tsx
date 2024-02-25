@@ -3,7 +3,11 @@ import ProductType from '../types/product'
 import { useCart } from '@/context/cart'
 import { toast } from 'react-toastify'
 
-const CartItem = ({ product }: ProductType) => {
+interface ICartItem {
+    product: ProductType
+}
+
+const CartItem = ({ product }: ICartItem) => {
     const cart = useCart()
 
     const removeItemFromCart = () => {

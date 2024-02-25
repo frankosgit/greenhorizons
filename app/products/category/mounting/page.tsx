@@ -6,12 +6,12 @@ import { useCart, ContextProps } from '@/context/cart'
 import { toast } from 'react-toastify'
 import MainLayout from '@/app/layouts/mainlayout';
 import ProductCard from '@/components/productcard';
-import { Products } from '@prisma/client';
 import useIsLoading from '@/app/hooks/useIsLoading';
+import ProductType from '@/types/product';
 
 const Mounting = () => {
     const cart = useCart() as ContextProps
-    const [products, setProducts] = useState<Products[]>([])
+    const [products, setProducts] = useState<ProductType[]>([])
     const category = "mounting";
     const apiUrl = `http://localhost:9090/products/get/category/${category}`
 
@@ -42,7 +42,7 @@ const Mounting = () => {
                 <div className="grid grid-cols-3 gap-5">
                     {products.map((product) => (
                         <ProductCard
-                            key={product.id}
+                            key={product._id}
                             product={product}
                         />
                     ))}

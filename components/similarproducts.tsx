@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from './productcard'
 import { BiLoader } from 'react-icons/bi'
-import { Products } from '@prisma/client'
+import ProductType from '@/types/product'
 
 const Similarproducts = () => {
 
-    const [products, setProducts] = useState<Products[]>([])
+    const [products, setProducts] = useState<ProductType[]>([])
     const getRandomProducts = async () => {
         try {
             const response = await fetch("/api/products/get-random")
@@ -32,7 +32,7 @@ const Similarproducts = () => {
             <div className='grid grid-cols-3 gap-4'>
             {products.map((product) => (
                 <ProductCard
-                key={product.id}
+                key={product._id}
                 product={product}
                 />
             ))}

@@ -38,7 +38,7 @@ const Cart = () => {
                     <div className='w-[65%]'>
                         {cart.getCart().map(product => (
                             <CartItem
-                                key={product.id}
+                                key={product._id}
                                 product={product}
                             />
                         ))}

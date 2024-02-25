@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState, ReactNode, Provider } from "react";
 
 type Product = {
-    id: number;
+    _id: string;
     title: string;
     description: string;
     url: string;
@@ -78,7 +78,7 @@ export default function Provider({
             if (storedCart !== null) {
                 cart = JSON.parse(storedCart)
             }
-            cart = cart.filter((item: Product) => item.id !== product.id)
+            cart = cart.filter((item: Product) => item._id !== product._id)
             localStorage.setItem('cart', JSON.stringify(cart))
             isItemAddedToCart(product)
             router.refresh()
@@ -94,7 +94,7 @@ export default function Provider({
             if (storedCart !== null) {
                 cart = JSON.parse(storedCart)
             }
-            cart = cart.filter((item: Product) => item.id === product.id)
+            cart = cart.filter((item: Product) => item._id === product._id)
             if (cart.length > 0) {
                 setIsItemAdded(true)
                 return

@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import ProductType from '../types/product'
 import Link from 'next/link'
 import { ContextProps, useCart } from '@/context/cart'
 import { toast } from 'react-toastify'
 
-const ProductCard = ({product} : ProductType) => {
+interface IProductCard {
+    product: ProductType
+}
+
+const ProductCard = ({product}: IProductCard) => {
     const cart = useCart() as ContextProps
+
+       useEffect(() => {
+        console.log("product ", product)
+    }, [])
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl flex flex-col h-96 mb-20">
             <figure className='bg-white'>
-                <img src={product?.url} alt={product.title} className="w-full h-full object-contain"/> 
+                <img src={product.url} alt={product.title} className="w-full h-full object-contain"/> 
                 
             </figure>
             <div className="card-body">
@@ -33,8 +41,7 @@ const ProductCard = ({product} : ProductType) => {
                     }}
                     
                     className={`btn btn-primary ${cart.isItemAdded ? 'btn-secondary' : 'btn-primary'}`}>{cart.isItemAdded ? `Remove from cart` : `Add to cart`}</button>
-                    <Link href = {`/shop/${product.category}/${product.id}`}><button className="btn btn-primary">More Details</button></Link>
-
+                    <Link href = {`/products/category/${product.category}/${product._id}`}><button className="btn btn-primary">More Details</button></Link>
                 </div>
             </div>
         </div>
