@@ -6,7 +6,7 @@ import { useCart, ContextProps } from '@/context/cart'
 import { toast } from 'react-toastify'
 import MainLayout from '@/app/layouts/mainlayout';
 import ProductCard from '@/components/productcard';
-import useIsLoading from '@/app/hooks/useIsLoading';
+import UseIsLoading from '@/app/hooks/useIsLoading';
 import ProductType from '@/types/product';
 
 const Mounting = () => {
@@ -16,7 +16,7 @@ const Mounting = () => {
     const apiUrl = `http://localhost:9090/products/get/category/${category}`
 
     useEffect(() => {
-        useIsLoading(true)
+        UseIsLoading(true)
         const getProducts = async () => {
             try {
                 const response = await fetch(apiUrl)
@@ -25,11 +25,11 @@ const Mounting = () => {
 
             } catch (error) {
                 toast.error("Error loading products")
-                useIsLoading(false)
+                UseIsLoading(false)
             }
         }
         getProducts();
-        useIsLoading(false)
+        UseIsLoading(false)
 
 
     }, [])

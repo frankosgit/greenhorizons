@@ -1,7 +1,6 @@
 import React from 'react'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
 import Link from 'next/link'
-import { Main } from 'next/document'
 import MainLayout from '../layouts/mainlayout'
 
 

@@ -5,8 +5,8 @@ import { useCart, ContextProps } from '@/context/cart'
 import { toast } from 'react-toastify'
 import MainLayout from '@/app/layouts/mainlayout';
 import ProductCard from '@/components/productcard';
-import useIsLoading from '@/app/hooks/useIsLoading';
 import ProductType from '@/types/product';
+import UseIsLoading from '@/app/hooks/useIsLoading';
 
 
 
@@ -17,7 +17,7 @@ const Inverters = () => {
         const apiUrl = `http://localhost:9090/products/get/category/${category}`
     
         useEffect(() => {
-            useIsLoading(true)
+            UseIsLoading(true)
             const getProducts = async () => {
                 try {
                     const response = await fetch(apiUrl)
@@ -26,11 +26,11 @@ const Inverters = () => {
     
                 } catch (error) {
                     toast.error("Error loading products")
-                    useIsLoading(false)
+                    UseIsLoading(false)
                 }
             }
             getProducts();
-            useIsLoading(false)
+            UseIsLoading(false)
 
         }, [])
 

@@ -7,17 +7,18 @@ import { toast } from 'react-toastify'
 import MainLayout from '@/app/layouts/mainlayout';
 import ProductCard from '@/components/productcard';
 import { Products } from '@prisma/client';
-import useIsLoading from '@/app/hooks/useIsLoading';
+import UseIsLoading from '@/app/hooks/useIsLoading';
+import ProductType from '@/types/product';
 
 const Lifting = () => {
 
     const cart = useCart() as ContextProps
-    const [products, setProducts] = useState<Products[]>([])
+    const [products, setProducts] = useState<ProductType[]>([])
     const category = "lifting";
     const apiUrl = `http://localhost:9090/products/get/category/${category}`
 
     useEffect(() => {
-        useIsLoading(true)
+        UseIsLoading(true)
         const getProducts = async () => {
             try {
                 const response = await fetch(apiUrl)
@@ -26,11 +27,11 @@ const Lifting = () => {
 
             } catch (error) {
                 toast.error("Error loading products")
-                useIsLoading(false)
+                UseIsLoading(false)
             }
         }
         getProducts();
-        useIsLoading(false)
+        UseIsLoading(false)
 
 
     }, [])
@@ -43,7 +44,7 @@ const Lifting = () => {
                 <div className="grid grid-cols-3 gap-5">
                     {products.map((product) => (
                         <ProductCard
-                            key={product.id}
+                            key={product._id}
                             product={product}
                         />
                     ))}
