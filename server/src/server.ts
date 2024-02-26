@@ -4,8 +4,10 @@ import mongoose from 'mongoose';
 import { config } from './config/config';
 import { urlencoded } from 'body-parser';
 import productRoutes from './routes/Product';
+import contactRoutes from './routes/Contact';
 
 const router = express();
+
 
 mongoose.connect(config.mongo.url, { retryWrites: true, w: 'majority' })
     .then(() => {
@@ -44,6 +46,8 @@ const StartServer = () => {
 
     /*routes*/
     router.use('/products', productRoutes);
+    router.use('/contact', contactRoutes);
+
 
     /*healthcheck*/
     router.get('/ping', (req, res, next) => res.status(200).json({ message: 'pong' }));
