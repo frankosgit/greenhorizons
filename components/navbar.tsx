@@ -1,18 +1,17 @@
 "use client"
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useCart, ContextProps } from '@/context/cart'
-import { useUser } from "@/context/usercontext";
 import debounce from "debounce"
 import { BiLoaderCircle } from 'react-icons/bi';
-import ProductType from '@/types/product';
-import { Products } from '@prisma/client';
+import ProductType from '@/types/product'
 
 const Navbar = () => {
   const cart = useCart() as ContextProps
-  const user = useUser()
-  const [items, setItems] = useState<Products[] | null>(null)
+  const [items, setItems] = useState<ProductType[] | null>(null)
   const [isSearching, setIsSearching] = useState(false)
+  const [cartCount , setCartCount] = useState<number>(0)
+
 
   const handleSearchName = debounce(async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === '') {
@@ -39,111 +38,13 @@ const Navbar = () => {
 
   }, 500)
 
-  const isLoggedIn = () => {
-    console.log(user)
-    if (user && user?.id) {
-      return (
-        <button
-          className='flex items-center gap-2 hover:underline cursor-pointer'
-        >
 
-          <div>Hi, {user.name}</div>
-          <img src="" alt="" />
-        </button>
-      )
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+        const count = cart.cartCount()
+        if (count) setCartCount(count);
     }
-  }
-
-  const isLoggedInProfileImg = () => {
-    console.log(user)
-    console.log(cart)
-    if (user && user?.id) {
-      return (
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="pt-btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full mt-4 ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" /></svg>        </div>
-          </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>{user.name}</li>
-            <li>
-              {/*               <Link href="/auth" className="justify-between">
-                Profile
-                <span className="badge"></span>
-              </Link> */}
-              {/*               <Link href="/address" className="justify-between">
-                Address
-                <span className="badge"></span>
-              </Link> */}
-              <Link href="/" className="justify-between">
-
-                {isLoggedInMenuButton()}
-                <span className="badge"></span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )
-    } else {
-      return (
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="pt-btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full mt-4 ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" /></svg>        </div>
-          </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>Log in to access profile!</li>
-            <li>
-
-              {isLoggedInMenuButton()}
-
-            </li>
-          </ul>
-        </div>
-      )
-    }
-  }
-
-
-  const handleSignOut = () => {
-    if (user && user?.id) {
-      user.signOut()
-    }
-  }
-
-  const isLoggedInButton = () => {
-    if (user && user?.id) {
-      return (
-
-        <Link href="/"
-          className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary"
-          onClick={handleSignOut}>
-          Log out</Link>
-      )
-    } else {
-      return (
-        <Link href="/login" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Log in</Link>
-      )
-    }
-  }
-
-  const isLoggedInMenuButton = () => {
-    if (user && user?.id) {
-      return (
-        <Link href="/auth" className="justify-between" onClick={handleSignOut}>
-          Log out
-        </Link>
-      )
-    } else {
-      return (
-        <Link href="/login" className="justify-between">
-          Log in
-          <span className="badge"></span>
-        </Link>)
-    }
-  }
-
-  let cartCount = cart.cartCount()
+}, []);
 
   return (
 
@@ -161,9 +62,7 @@ const Navbar = () => {
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost normal-case text-xl bg-accent"><img className="h-10" src="/GrönHLogo.png" alt="" /></Link>
       </div>
-      <div className='mr-40'>
-        {isLoggedIn()}
-      </div>
+
       <input onChange={handleSearchName} type="text" placeholder="Search" className="input input-bordered w-full max-w-xs mr-4" />
       <label htmlFor="my_modal_6" className="btn mr-4">       {isSearching ? <BiLoaderCircle className="animate-spin" size={22} /> : "Search"}
       </label>
@@ -176,7 +75,7 @@ const Navbar = () => {
 
           {items && items.length > 0 ?
 
-            <div className="p-6 absolute z-50 w-50% left-0 top-12 max-w-[500px] h-auto">{items?.map((item) => <div className='m-2 p-4 flex border align-center hover:bg-gray-200 cursor-pointer' key={item.id}> <Link href={`/shop/${item?.category}/${item?.id}`}>{item.title}  <img className='w-[50px]' src={item.url} alt="" /> </Link></div>)}</div> : "Your search critera returned no results"}
+            <div className="p-6 absolute z-50 w-50% left-0 top-12 max-w-[500px] h-auto">{items?.map((item) => <div className='m-2 p-4 flex border align-center hover:bg-gray-200 cursor-pointer' key={item._id}> <Link href={`/shop/${item?.category}/${item?._id}`}>{item.title}  <img className='w-[50px]' src={item.url} alt="" /> </Link></div>)}</div> : "Your search critera returned no results"}
           <div className="modal-action">
             <label htmlFor="my_modal_6" className="btn">Close</label>
           </div>
@@ -185,7 +84,7 @@ const Navbar = () => {
 
 
       <Link href="/products" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Store</Link>
-      {isLoggedInButton()}
+
       <Link href="/contact" className="btn btn-ghost normal-case text-m text-black mr-4 bg-primary">Contact</Link>
 
       <div className="flex-none">
@@ -198,7 +97,7 @@ const Navbar = () => {
           </label>
           <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
             <div className="card-body">
-              <span className="font-bold text-lg">{cartCount} products in cart</span>
+              <span className="font-bold text-lg">{ cartCount } products in cart</span>
               <span className="text-info">Get price on request</span>
               <div className="card-actions">
                 Checkout
@@ -210,7 +109,7 @@ const Navbar = () => {
           </div>
 
         </div>
-        {isLoggedInProfileImg()}
+
       </div>
     </div>
   )

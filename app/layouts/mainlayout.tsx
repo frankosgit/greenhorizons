@@ -15,9 +15,12 @@ const MainLayout = ({children}:MainLayoutProps) => {
 
     useEffect(() => {
         window.addEventListener("storage", function(){
+            
             let res = localStorage.getItem('isLoading')
             res === 'false' ? setIsLoading(false) : setIsLoading(true)
         })
+
+        
     })
 
   return (
