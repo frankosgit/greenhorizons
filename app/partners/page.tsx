@@ -44,7 +44,7 @@ const Partners: React.FC<RadioInputProps> = ({checked}) => {
                     Hanersun aims to improve the quality of life for its customers, employees, and the environment.
                     They have developed and built solar projects with a capacity of 600 MW in Asia and the Pacific region.
                     Hanersun has offices around the world and offers excellent service to its local customers.
-                    They are ranked as a BNEF Tier 1 solar panel manufacturer, one of PVBL's Top 100 Global PV companies, and the fastest-growing PV company in the industry.
+                    They are ranked as a BNEF Tier 1 solar panel manufacturer, one of PVBL&apos;s Top 100 Global PV companies, and the fastest-growing PV company in the industry.
                     </p>
                     <span className="font-bold font-style: italic font-italics"><Link href="https://www.hanersun.com" target="_blank">Read more here</Link></span>
 
@@ -114,7 +114,7 @@ const Partners: React.FC<RadioInputProps> = ({checked}) => {
                     As an example, the substructure for 500 kW was set up by 5 people in 4 days, including cable installation!
                     For this, only 7 EU pallets of materials needed to be lifted.
                     For those of you who are installers and are responsible for the end result, this is the best system on the market in our opinion.
-                    Plenty of space for ballast stones that won't slide or fall off.
+                    Plenty of space for ballast stones that won&apos;t slide or fall off.
                     Click system, so very little screwing.
                     Different types of anti-slip protection under the wide iFix module. The system stays in place!
                     Short delivery times.

@@ -55,7 +55,7 @@ const Aboutus: React.FC<RadioInputProps> =  ( {type, name, checked}) => {
                     Green Horizon is your unique wholesale partner specialized in solar cell technology.
                     Our vision is to deliver innovative quality products directly to the end customer and revolutionize the solar energy industry in the Nordic region.
                     With over 15 years of experience in assembling all types of solar energy systems, the company possesses unparalleled knowledge of market dynamics and needs.
-                    By constantly striving for innovation, we see a growing need to streamline today's solar energy model, and our mission is to lead this change by selling innovative solutions for various projects.
+                    By constantly striving for innovation, we see a growing need to streamline today&apos;s solar energy model, and our mission is to lead this change by selling innovative solutions for various projects.
                     Today, we are not comprehensive, but Green Horizon is moving forward to be a leader in development and deliver what the market demands for various solar energy system systems and solutions.
                     However, the products we sell are all of the highest quality and contribute to higher margins for all our customers. All our products are chosen by experienced installers to try to find faster, safer, and better alternatives.
                     </p>
@@ -71,7 +71,7 @@ const Aboutus: React.FC<RadioInputProps> =  ( {type, name, checked}) => {
                     Green Horizon stands not only for quality but also for sustainability and efficiency.
                     We are constantly seeking more efficient, better, and sustainable solutions.
                     Those of us working at Green Horizon have thousands of successful installations behind us, and we have created tailored solutions that suit different types of roofs, making each project unique and efficient.
-                    It's not just about offering solar cell technology. For us, each project is a step towards a greener future. By collaborating with recognized brands and manufacturers, we ensure that each installation contributes to a sustainable future.
+                    It&apos;s not just about offering solar cell technology. For us, each project is a step towards a greener future. By collaborating with recognized brands and manufacturers, we ensure that each installation contributes to a sustainable future.
                     </p>
                 </div>
             </div>
@@ -84,7 +84,7 @@ const Aboutus: React.FC<RadioInputProps> =  ( {type, name, checked}) => {
                     <p>
                     In our previous roles, we have all worked with long-lasting customer relationships and collaborative partners.
                     In the present, we are looking for those of you who want to work according to our unique model. This is for those who see and understand the benefits of this approach. We want to help you increase the margins on your projects by offering you unique products and personalized support.
-                    Our longstanding collaboration with Telge Energi, which began back in 2016, has not only strengthened our commitment to solar energy in Sweden but also demonstrated our ability to innovate. That's why we started Green Horizon!
+                    Our longstanding collaboration with Telge Energi, which began back in 2016, has not only strengthened our commitment to solar energy in Sweden but also demonstrated our ability to innovate. That&apos;s why we started Green Horizon!
                     The partnership has deepened our ties within the industry, and together with Telge Energi and everyone else, we are determined to continue developing and leading the way for the future of solar energy. &nbsp; 
                     <Link href = "partners" className="text-accent underline">Read more</Link>
                     </p>

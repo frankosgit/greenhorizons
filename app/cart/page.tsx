@@ -7,16 +7,16 @@ import Similarproducts from '@/components/similarproducts'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/context/cart'
-import useIsLoading from '../hooks/useIsLoading'
+import UseIsLoading from '../hooks/useIsLoading'
 
 const Cart = () => {
     const router = useRouter()
     const cart = useCart()
 
     useEffect(() => {
-        useIsLoading(true);
+        UseIsLoading(true);
         cart.getCart()
-        useIsLoading(false)
+        UseIsLoading(false)
     }, [cart])
 
 

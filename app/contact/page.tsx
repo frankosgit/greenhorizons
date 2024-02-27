@@ -42,8 +42,8 @@ const Contact = () => {
                                     Contact Us
                                 </h1>
                                 <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-12">
-                                    We're here to help. <br />
-                                    We look forward to hearing from you 🙂
+                                        We&apos;re here to help. <br />
+                                        We look forward to hearing from you 🙂
                                 </p>
                             </div>
                             <div className="lg:w-1/2 md:w-2/3 mx-auto">

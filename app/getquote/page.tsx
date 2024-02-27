@@ -29,7 +29,7 @@ const GetQuote = () => {
                                 <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-12">
                                     Add items to your basket. <br />
                                     Submit this form <br />
-                                    And we'll email you within a few working days!
+                                    And we&apos;ll email you within a few working days!
                                 </p>
                             </div>
                             <div className="lg:w-1/2 md:w-2/3 mx-auto">
@@ -119,10 +119,10 @@ const GetQuote = () => {
 
                 <div className='w-1/2 p-4'>
                     <h1 className='mb-8'>Items for quote:</h1>
-                    <CheckOutItem
+                    {/* <CheckOutItem
                         key={product.id}
                         product={product}
-                    />
+                    /> */}
                 </div>
             </div>
 
